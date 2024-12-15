@@ -5,6 +5,8 @@ import { mdsvex } from "mdsvex";
 
 
 const config = {
+  extensions: [".svelte", ".md", ".svx"],
+
   kit: {
     adapter: adapter({
       pages: "build",
@@ -20,8 +22,7 @@ const config = {
       "#src": "./src/",
       "#parts": "./src/parts",
       "#styles": "./src/styles",
-      "#modules": "./src/modules",
-      "#stores": "./src/modules/stores",
+      "#scripts": "./src/scripts",
     },
     prerender: {
       handleHttpError: "warn",
@@ -30,7 +31,7 @@ const config = {
 
   preprocess: [
     mdsvex({
-      extensions: [".svelte", ".md", ".svx"],
+      extensions: [".md", ".svx"],
     }),
     sveltePreprocess({
       scss: {
@@ -38,8 +39,6 @@ const config = {
       }
     }),
   ],
-  
-  extensions: [".svelte", ".md", ".svx"],
 };
 
 export default config;
