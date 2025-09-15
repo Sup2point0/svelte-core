@@ -1,10 +1,13 @@
 <!-- @component ...
 
+...
 -->
 
 <script lang="ts">
 
-import ... from "#parts/~.svelte";
+interface Props {}
+
+let {}: Props = $props();
 
 </script>
 
@@ -14,6 +17,6 @@ import ... from "#parts/~.svelte";
 
 <style lang="scss">
 
-...
+
 
 </style>
