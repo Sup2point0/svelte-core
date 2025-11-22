@@ -4,28 +4,28 @@ on:
   workflow_dispatch:
   push:
     paths:
-      # - '**.yml'
+      - '**.yml'
   schedule:
-    - cron: '20 4 * * 6'
+    - cron: '20 4 4,20 * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
         
     steps:
-      - name: 'git / checkout'
+      - name: 'github / checkout'
         uses: actions/checkout@v4
 
-      - name: 'node / setup'
+      - name: 'github / node / setup'
         uses: actions/setup-node@v4
         with:
           node-version: latest
           cache: 'npm'
 
-      - name: 'svelte / install'
+      - name: 'svelte / npm install'
         run: npm install
 
-      - name: 'svelte / build'
+      - name: 'svelte / npm run build'
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
