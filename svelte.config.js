@@ -1,6 +1,5 @@
 import adapter from "@sveltejs/adapter-static";
 import { sveltePreprocess } from "svelte-preprocess";
-
 import { mdsvex } from "mdsvex";
 
 
@@ -19,13 +18,14 @@ const config = {
       base: process.argv.includes("dev") ? "" : process.env.BASE_PATH
     },
     alias: {
-      "#src": "./src/",
-      "#parts": "./src/parts",
-      "#styles": "./src/styles",
+      "#src":     "./src/",
+      "#parts":   "./src/parts",
+      "#styles":  "./src/styles",
       "#scripts": "./src/scripts",
     },
     prerender: {
       handleHttpError: "warn",
+      handleMissingId: "warn",
     },
   },
 
@@ -35,7 +35,10 @@ const config = {
     }),
     sveltePreprocess({
       scss: {
-        prependData: ``,
+        includePaths: ["src/styles"],
+        prependData: `
+          @use 'mixins/fonts' as *;
+        `,
       }
     }),
   ],
